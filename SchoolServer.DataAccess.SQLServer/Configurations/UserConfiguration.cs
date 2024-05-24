@@ -20,9 +20,6 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .HasMaxLength(500)
             .IsUnicode(false);
 
-        builder.Property(x => x.UserId)
-            .IsRequired();
-
         builder.HasMany(u => u.Roles)
             .WithMany(r => r.Users)
             .UsingEntity<UserRoleEntity>(
@@ -31,8 +28,5 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             );
 
         builder.HasIndex(x => x.Username).IsUnique();
-        builder.HasIndex(x => x.UserId).IsUnique();
-
-
     }
 }

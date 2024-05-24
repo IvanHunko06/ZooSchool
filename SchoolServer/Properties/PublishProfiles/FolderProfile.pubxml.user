@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Admin\Desktop\ZooSchool\SchoolServer\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-05-24T17:25:12.3224978Z;True|2024-05-24T20:15:15.7386617+03:00;False|2024-05-24T20:10:49.2954085+03:00;False|2024-05-24T15:57:10.7262839+03:00;True|2024-05-24T15:39:32.6454610+03:00;False|2024-05-24T15:37:19.4566824+03:00;False|2024-05-24T15:33:25.5198700+03:00;True|2024-05-24T15:10:07.9299298+03:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

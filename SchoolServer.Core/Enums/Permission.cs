@@ -4,8 +4,16 @@ public enum Permission
 {
     GrantRole = 1,
     RemoveRole,
-    BanUser,
-    UnbanUser,
-    BanAdmin,
-    UnbanAdmin
+    DeleteOwnAccount,
+    DeleteAnyAccount,
+    GetOwnAccount,
+    GetAnyAccount,
+    ChangeOwnPassword,
+    ChangeAnyPassword,
+    CreateResource,
+    DeleteResource,
+    CreateLesson,
+    DeleteLesson,
+    ModifyLesson,
+    ViewFiles
 }

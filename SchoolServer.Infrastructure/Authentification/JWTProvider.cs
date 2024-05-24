@@ -16,7 +16,8 @@ public class JWTProvider : IJWTProvider
     }
     public string GenerateToken(User user)
     {
-        Claim[] claims = [new(options.UserIdClaim, user.Id.ToString())];
+
+        Claim[] claims = new Claim[] { new(options.UsernameClaim, user.Username) };
         var signingCredentials = new SigningCredentials
             (new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey)),
             SecurityAlgorithms.HmacSha256);
@@ -28,18 +29,13 @@ public class JWTProvider : IJWTProvider
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
         return tokenValue;
     }
-    public Guid GetUserIdFromToken(string token)
+    public string GetUsernameFromToken(string token)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var jwtToken = tokenHandler.ReadJwtToken(token);
 
-        var userIdClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == options.UserIdClaim);
-        if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out var userId))
-        {
-            return userId;
-        }
-
-        throw new ArgumentException("Invalid token");
+        var usernameClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == options.UsernameClaim);
+        return usernameClaim?.Value ?? string.Empty;
 
     }
 }

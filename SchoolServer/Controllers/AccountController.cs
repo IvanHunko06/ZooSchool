@@ -6,20 +6,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using SchoolServer.Core.Models;
 using SchoolServer.Infrastructure.Authentification;
+using SchoolServer.Application.Interfaces.Auth;
+using SchoolServer.API.Models;
 namespace SchoolServer.Controllers;
 
 [ApiController]
-[Route("api/acount")]
+[Route("api/account")]
 public class AccountController : ControllerBase
 {
     private readonly ILogger<AccountController> _logger;
     private readonly UsersServices usersServices;
+    private readonly IJWTProvider jWTProvider;
     private readonly JWTOptions jWTOptions;
 
-    public AccountController(ILogger<AccountController> logger, UsersServices usersServices, IOptions<JWTOptions> jWTOptions)
+    public AccountController(ILogger<AccountController> logger, UsersServices usersServices, IOptions<JWTOptions> jWTOptions, IJWTProvider jWTProvider)
     {
         _logger = logger;
         this.usersServices = usersServices;
+        this.jWTProvider = jWTProvider;
         this.jWTOptions = jWTOptions.Value;
     }
 
@@ -65,7 +69,7 @@ public class AccountController : ControllerBase
         {
             return Unauthorized(new { code = 1 });
         }
-        catch (IncorrectLoginPasswordException)
+        catch (IncorrectPasswordException)
         {
             return Unauthorized(new { code = 2 });
         }
@@ -80,16 +84,18 @@ public class AccountController : ControllerBase
 
 
     }
-    [Authorize]
+
+    [HasPermission(Core.Enums.Permission.GetOwnAccount)]
     [HttpGet]
     public async Task<IActionResult> Get()
     {
         string token = Request.Cookies[jWTOptions.JWTCookieName] ?? string.Empty;
+        string username = jWTProvider.GetUsernameFromToken(token);
         User user;
         try
         {
-            user = await usersServices.GetUserByJWTToken(token);
-            return Ok(new { username = user.UserName, passwordHash = user.PasswordHash, id = user.Id });
+            user = await usersServices.GetByUsername(username);
+            return Ok(new { username = user.Username});
         }
         catch (UserNotFoundException)
         {
@@ -101,5 +107,106 @@ public class AccountController : ControllerBase
         }
         
     }
+    [HasPermission(Core.Enums.Permission.GetAnyAccount)]
+    [HttpGet("{targetUsername}")]
+    public async Task<IActionResult> Get(string targetUsername)
+    {
+        User user;
+        try
+        {
+            user = await usersServices.GetByUsername(targetUsername);
+            return Ok(new { username = user.Username, passwordHash = user.PasswordHash });
+        }
+        catch (UserNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+        }
 
+    }
+
+
+
+    [HasPermission(Core.Enums.Permission.DeleteOwnAccount)]
+    [HttpDelete("delete_account")]
+    public async Task<IActionResult> DeleteAccount()
+    {
+        string token = Request.Cookies[jWTOptions.JWTCookieName] ?? string.Empty;
+        string username = jWTProvider.GetUsernameFromToken(token);
+        try
+        {
+            await usersServices.DeleteAccount(username);
+            return Ok();
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+        }
+
+    }
+
+    [HasPermission(Core.Enums.Permission.DeleteAnyAccount)]
+    [HttpDelete("delete_account/{targetUsername}")]
+    public async Task<IActionResult> DeleteAccount(string targetUsername)
+    {
+        try
+        {
+            await usersServices.DeleteAccount(targetUsername);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+        }
+    }
+
+    [HttpPatch("change_own_password")]
+    [HasPermission(Core.Enums.Permission.ChangeOwnPassword)]
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel changePasswordModel)
+    {
+        try
+        {
+            string token = Request.Cookies[jWTOptions.JWTCookieName] ?? string.Empty;
+            string username = jWTProvider.GetUsernameFromToken(token);
+            await usersServices.ChangePassword(username, changePasswordModel.CurrentPassword, changePasswordModel.NewPassword);
+            return Ok(new {code = 0});
+        }
+        catch(UserNotFoundException)
+        {
+            return NotFound(new {code = 1});
+        }
+        catch (IncorrectPasswordException)
+        {
+            return BadRequest(new { code = 2 });
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+        }
+    }
+    [HttpPatch("change_any_password")]
+    [HasPermission(Core.Enums.Permission.ChangeAnyPassword)]
+    public async Task<IActionResult> ChangePassword([FromBody] SetPasswordModel changePasswordModel)
+    {
+        try
+        {
+            await usersServices.ChangePassword(changePasswordModel.Username, changePasswordModel.NewPassword);
+            return Ok(new { code = 0 });
+        }
+        catch (UserNotFoundException)
+        {
+            return NotFound(new { code = 1 });
+        }
+        catch (IncorrectPasswordException)
+        {
+            return BadRequest(new { code = 2 });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new { error = ex.Message });
+        }
+    }
 }

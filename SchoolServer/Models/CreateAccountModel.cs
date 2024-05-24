@@ -1,8 +1,8 @@
-﻿namespace SchoolServer.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace SchoolServer.Models;
+
+public class CreateAccountModel
 {
-    public class CreateAccountModel
-    {
-        public string Login { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-    }
+    [Required] public string Login { get; set; } = string.Empty;
+    [Required] public string Password { get; set; } = string.Empty;
 }

@@ -2,22 +2,18 @@
 {
     public class User
     {
-        private User(Guid id, string userName, string passwordHash, bool isBanned)
+        private User(string userName, string passwordHash)
         {
-            Id = id;
-            UserName = userName;
+            Username = userName;
             PasswordHash = passwordHash; 
-            IsBanned = isBanned;
         }
 
-        public Guid Id { get; private set; }
-        public string UserName { get; private set; }
+        public string Username { get; private set; }
         public string PasswordHash { get; private set;}
-        public bool IsBanned { get; private set;}
 
-        public static User Create(Guid id, string userName, string passwordHash, bool isBanned = false)
+        public static User Create(string userName, string passwordHash)
         {
-            return new User(id, userName, passwordHash, isBanned);
+            return new User(userName, passwordHash);
         }
 
     }

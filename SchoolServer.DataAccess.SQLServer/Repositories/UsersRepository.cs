@@ -17,13 +17,28 @@ public class UsersRepository : IUsersRepository
         this.context = context;
     }
 
+    public async Task DeleteByUsername(string username)
+    {
+        try
+        {
+            await context.Users
+                .Where(u => u.Username == username)
+                .ExecuteDeleteAsync();
+        }
+        catch
+        {
+            throw;
+        }
 
-    public async Task AddUserRole(Guid userId, Role role)
+    }
+
+
+    public async Task AddUserRole(string username, Role role)
     {
 
         var userEntity = await context.Users
             .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.UserId == userId) ?? throw new UserNotFoundException();
+            .FirstOrDefaultAsync(u => u.Username == username) ?? throw new UserNotFoundException();
         var roleEntity = await context.Roles
             .AsNoTracking()
             .FirstOrDefaultAsync(r => r.Id == (int)role) ?? throw new RoleNotFoundException();
@@ -52,7 +67,7 @@ public class UsersRepository : IUsersRepository
         List<User> users = new List<User>();
         foreach (var user in userEntitis)
         {
-            users.Add(User.Create(user.UserId, user.Username, user.Password, user.BannedByUser != null ? true : false));
+            users.Add(User.Create(user.Username, user.Password));
         }
         return users;
     }
@@ -67,10 +82,8 @@ public class UsersRepository : IUsersRepository
     {
         var userEntity = new UserEntity()
         {
-            UserId = user.Id,
-            Username = user.UserName,
+            Username = user.Username,
             Password = user.PasswordHash,
-            BannedByUser = null
         };
         try
         {
@@ -100,27 +113,30 @@ public class UsersRepository : IUsersRepository
         var userEntity = await context.Users
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Username == username) ?? throw new UserNotFoundException();
-        return User.Create(userEntity.UserId, userEntity.Username, userEntity.Password, userEntity.BannedByUser != null ? true : false);
-    }
-    public async Task<User> GetByUserId(Guid userId)
-    {
-        var userEntity = await context.Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.UserId == userId) ?? throw new UserNotFoundException();
-        return User.Create(userEntity.UserId, userEntity.Username, userEntity.Password, userEntity.BannedByUser != null ? true : false);
+        return User.Create(userEntity.Username, userEntity.Password);
     }
 
-    public async Task<HashSet<Permission>> GetUserPermissions(Guid userId)
+    public async Task<HashSet<Permission>> GetUserPermissions(string username)
     {
         var roles = await context.Users.AsNoTracking()
             .Include(u => u.Roles)
             .ThenInclude(u => u.Permissions)
-            .Where(u => u.UserId == userId)
+            .Where(u => u.Username == username)
             .Select(u => u.Roles)
             .ToArrayAsync();
         return roles.SelectMany(r => r)
             .SelectMany(r => r.Permissions)
             .Select(p => (Permission)p.Id)
             .ToHashSet();
+    }
+
+    public async Task Update(User user)
+    {
+        await context.Users
+            .Where(u => u.Username == user.Username)
+            .ExecuteUpdateAsync(
+                s => s
+                .SetProperty(c => c.Password, user.PasswordHash)
+            );
     }
 }

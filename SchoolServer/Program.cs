@@ -9,11 +9,14 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SchoolServer.Infrastructure.Authentification;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddScoped<UsersServices>();
+builder.Services.AddScoped<LessonsService>();
+builder.Services.AddSingleton<ResourceServices>();
 
 
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
@@ -23,6 +26,7 @@ builder.Services.Configure<JWTOptions>(configuration.GetSection("JwtOptions"));
 builder.Services.Configure<SchoolServer.DataAccess.SQLServer.AuthorizationOptions>(configuration.GetSection("AuthorizationOptions"));
 
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<ILessonsRepository, LessonsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -78,7 +82,5 @@ app.UseCookiePolicy(new CookiePolicyOptions
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -20,14 +20,14 @@ public class PermissionAuthorizationHandler
     protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirment requirement)
     {
 
-        var userIdClaim = context.User.Claims.FirstOrDefault(claim => claim.Type == jWToptions.UserIdClaim);
+        var usernameClaim = context.User.Claims.FirstOrDefault(claim => claim.Type == jWToptions.UsernameClaim);
         Guid userId;
-        if (userIdClaim == null || !Guid.TryParse(userIdClaim.Value, out userId))
+        if (usernameClaim == null)
             return;
 
         try
         {
-            var permissions = await usersRepository.GetUserPermissions(userId);
+            var permissions = await usersRepository.GetUserPermissions(usernameClaim.Value);
             if (permissions.Contains(requirement.Permission))
                 context.Succeed(requirement);
         }

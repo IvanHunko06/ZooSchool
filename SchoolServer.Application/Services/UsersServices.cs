@@ -24,11 +24,11 @@ public class UsersServices
     {
         var hashedPassword = passwordHasher.Generate(password);
 
-        var user = User.Create(Guid.NewGuid(), username, hashedPassword);
+        var user = User.Create(username, hashedPassword);
         try
         {
             await usersRepository.Add(user);
-            await usersRepository.AddUserRole(user.Id, Core.Enums.Role.User);
+            await usersRepository.AddUserRole(user.Username, Core.Enums.Role.User);
             logger.LogInformation("User successfully added to database");
         }
         catch(UserAlreadyExistException)
@@ -42,6 +42,39 @@ public class UsersServices
         }
 
         
+    }
+    public async Task ChangePassword(string username, string currentPassword, string newPassword)
+    {
+        try
+        {
+            var user = await GetByUsername(username);
+            if (!passwordHasher.Verify(currentPassword, user.PasswordHash)) throw new IncorrectPasswordException();      
+            string newPasswordHash = passwordHasher.Generate(newPassword);
+            User newUser = User.Create(username, newPasswordHash);
+            await usersRepository.Update(newUser);
+
+        }
+        catch(Exception ex)
+        {
+            logger.LogError(ex.Message);
+            throw;
+        }
+    }
+    public async Task ChangePassword(string username, string newPassword)
+    {
+        try
+        {
+            var user = await GetByUsername(username);
+            string newPasswordHash = passwordHasher.Generate(newPassword);
+            User newUser = User.Create(user.Username, newPasswordHash);
+            await usersRepository.Update(newUser);
+
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex.Message);
+            throw;
+        }
     }
 
     public async Task<string> Login(string username, string password)
@@ -61,29 +94,41 @@ public class UsersServices
             throw;
         }
         var passwordCheck = passwordHasher.Verify(password, user.PasswordHash);
-        if (!passwordCheck) { logger.LogError($"{password} not equals {user.PasswordHash}. Wrong password");  throw new IncorrectLoginPasswordException(); }
+        if (!passwordCheck) { logger.LogError($"{password} not equals {user.PasswordHash}. Wrong password");  throw new IncorrectPasswordException(); }
 
-        if (user.IsBanned)
-            throw new UserBannedException();
         var token = jWTProvider.GenerateToken(user);
         return token;
     }
-    public async Task<User> GetUserByJWTToken(string jwtToken)
+
+    public async Task<User> GetByUsername(string username)
     {
-        Guid userId = jWTProvider.GetUserIdFromToken(jwtToken);
         try
         {
-            var user = await usersRepository.GetByUserId(userId);
+            var user = await usersRepository.GetByUsername(username);
             return user;
-        }catch(UserNotFoundException)
+        }
+        catch (UserNotFoundException)
         {
-            logger.LogError($"UserId {userId.ToString()} not found in database");
+            logger.LogError($"Username {username} not found in database");
             throw;
         }
         catch
         {
             throw;
         }
+    }
 
+    public async Task DeleteAccount(string targetUsername)
+    {
+        try
+        {
+            await usersRepository.DeleteByUsername(targetUsername);
+            logger.LogInformation("Account deleated");
+        }
+        catch(Exception ex)
+        {
+            logger.LogError(ex.Message);
+            throw;
+        }
     }
 }

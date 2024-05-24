@@ -8,8 +8,9 @@ namespace SchoolServer.Application.Interfaces.Repositories
         Task Add(User user);
         Task<List<User>> Get();
         Task<User> GetByUsername(string username);
-        Task<User> GetByUserId(Guid userId);
-        public Task AddUserRole(Guid userId, Role role);
-        Task<HashSet<Permission>> GetUserPermissions(Guid userId);
+        public Task AddUserRole(string username, Role role);
+        Task<HashSet<Permission>> GetUserPermissions(string username);
+        Task DeleteByUsername(string username);
+        Task Update(User user);
     }
 }

@@ -19,6 +19,7 @@ public class SchoolServerDbContext : DbContext
     public DbSet<PermissionEntity> Permissions { get; set; }
     public DbSet<UserRoleEntity> UsersRoles { get; set; }
     public DbSet<RolePermissionEntity> RolesPermissions { get; set; }
+    public DbSet<LessonEntity> Lessons { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,6 +28,7 @@ public class SchoolServerDbContext : DbContext
         modelBuilder.ApplyConfiguration(new PermisionConfiguration());
         modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(authOptions.Value));
         modelBuilder.ApplyConfiguration(new UsersRolesConfiguration());
+        modelBuilder.ApplyConfiguration(new LessonConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.HomePage"
+             x:Name="homePage"
+             Title="Home"
+             xmlns:converters="clr-namespace:Client.Converters"
+             xmlns:local="clr-namespace:Client">
+    <ContentPage.Resources>
+        <converters:CompareTwoStringConverter x:Key="CompareTwoStringConverter"/>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger TargetType="Button" Value="True">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource CompareTwoStringConverter}">
+                            <Binding Source="{RelativeSource Self}" Path="CommandParameter"/>
+                            <Binding Source="{x:Reference homePage}" Path="BindingContext.ActiveMenuItem"/>
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#27A1A7, Dark=#66CDAA}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="Auto, *" Padding="10" RowSpacing="10">
+        <VerticalStackLayout  Grid.Row="0" Spacing="5">
+            <Label Text="{Binding UsernameText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large"/>
+            <Button
+                    x:Name="LessonsButton"
+                    Text="Уроки" 
+                    FontSize="Small"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Command="{Binding SetActiveMenuItemCommand}"
+                    CommandParameter="Lessons"/>
+            <Button 
+                    x:Name="TestsButton"
+                    Text="Тести" 
+                    FontSize="Small"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Command="{Binding SetActiveMenuItemCommand}"
+                    CommandParameter="Tests"/>
+            <Button 
+                    x:Name="ProfileButton"
+                    Text="Профіль" 
+                    FontSize="Small"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Command="{Binding SetActiveMenuItemCommand}"
+                    CommandParameter="Profile"/>
+            <Button Text="Вихід" Clicked="ExitButton_Clicked"  FontSize="Small" BackgroundColor="{AppThemeBinding Light=#A72828, Dark=#7A1C1C}"/>
+        </VerticalStackLayout>
+        <CollectionView  ItemsSource="{Binding Lessons}"
+                    Grid.Row="1"
+                    x:Name="LessonsCollectionView"
+                    HorizontalOptions="FillAndExpand">
+            <CollectionView.IsVisible>
+                <MultiBinding Converter="{StaticResource CompareTwoStringConverter}">
+                    <Binding Source="{x:Reference LessonsButton}" Path="CommandParameter"/>
+                    <Binding Source="{x:Reference homePage}" Path="BindingContext.ActiveMenuItem"/>
+                </MultiBinding>
+            </CollectionView.IsVisible>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Transparent" CornerRadius="15" Margin="5" Padding="0"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource LightGreenButton}, Dark={StaticResource BrightTurquoise}}"
+                           WidthRequest="{Binding Source={x:Reference homePage}, Path=BindingContext.ContentWidth}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference homePage}, Path=BindingContext.LessonItemTappedCommand}"
+                                              CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Spacing="0">
+                            <Image Source="{Binding ImageUrl}"
+                               Aspect="AspectFit"
+                                 />
+                            <Label Text="{Binding Title}"
+                               FontSize="Small"
+                               LineBreakMode="WordWrap"
+                               Margin="6, 10, 6, 10"
+                                   HorizontalTextAlignment="Center"
+                               HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{Binding LessonsSpanCount}"/>
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+        <CollectionView ItemsSource="{Binding Tests}"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand">
+            <CollectionView.IsVisible>
+                <MultiBinding Converter="{StaticResource CompareTwoStringConverter}">
+                    <Binding Source="{x:Reference TestsButton}" Path="CommandParameter"/>
+                    <Binding Source="{x:Reference homePage}" Path="BindingContext.ActiveMenuItem"/>
+                </MultiBinding>
+            </CollectionView.IsVisible>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{Binding LessonsSpanCount}"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Transparent" CornerRadius="15" Margin="5" Padding="0"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource LightGreenButton}, Dark={StaticResource BrightTurquoise}}"
+                            WidthRequest="{Binding Source={x:Reference homePage}, Path=BindingContext.ContentWidth}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference homePage}, Path=BindingContext.TestItemTappedCommand}"
+                                  CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="{Binding Title}"
+                               FontSize="Small"
+                               LineBreakMode="WordWrap"
+                               Margin="6, 10, 6, 10"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <VerticalStackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" Margin="7, 5" Spacing="10">
+            <VerticalStackLayout.IsVisible>
+                <MultiBinding Converter="{StaticResource CompareTwoStringConverter}">
+                    <Binding Source="{x:Reference ProfileButton}" Path="CommandParameter"/>
+                    <Binding Source="{x:Reference homePage}" Path="BindingContext.ActiveMenuItem"/>
+                </MultiBinding>
+            </VerticalStackLayout.IsVisible>
+            <Label Text="Змінити пароль:" FontSize="25"/>
+            <Entry x:Name="CurrentPasswordEntry" TextChanged="CurrentPasswordEntry_TextChanged" Placeholder="Поточний пароль"/>
+            <Entry x:Name="NewPasswordEntry"  TextChanged="CurrentPasswordEntry_TextChanged" Placeholder="Новий пароль"/>
+            <Button x:Name="SetNewPasswordButton" Clicked="SetNewPasswordButton_Clicked" Text="Змінити" IsEnabled="False"/>
+            <Label x:Name="ChangePasswordResultLabel" IsVisible="False"/>
+            <Button Text="Видалити профіль" Clicked="DeleteProfileButton_Clicked"  BackgroundColor="{AppThemeBinding Light=#A72828, Dark=#7A1C1C}"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

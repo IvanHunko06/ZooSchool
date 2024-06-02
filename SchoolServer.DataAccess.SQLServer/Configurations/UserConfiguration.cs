@@ -27,6 +27,10 @@ public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
                 r => r.HasOne<UserEntity>().WithMany().HasForeignKey(u => u.UserId)
             );
 
+        builder.HasMany(u=>u.TestAttempts)
+            .WithOne(a=>a.User)
+            .HasForeignKey(a=>a.UserId)
+            .OnDelete(DeleteBehavior.SetNull);
         builder.HasIndex(x => x.Username).IsUnique();
     }
 }

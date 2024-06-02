@@ -1,0 +1,274 @@
+[
+  {
+    "id": 0,
+    "type": "single",
+    "label": "Що є основною причиною зимової сплячки ведмедів?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Холод"
+      },
+      {
+        "id": "2",
+        "text": "Відсутність їжі"
+      },
+      {
+        "id": "3",
+        "text": "Брак води"
+      },
+      {
+        "id": "4",
+        "text": "Зміна сезонів"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 1,
+    "type": "single",
+    "label": "Скільки разів на хвилину дихає ведмідь під час зимової сплячки?",
+    "options": [
+      {
+        "id": "1",
+        "text": "10–12 разів"
+      },
+      {
+        "id": "2",
+        "text": "6–8 разів"
+      },
+      {
+        "id": "3",
+        "text": "4–5 разів"
+      },
+      {
+        "id": "4",
+        "text": "2–3 рази"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "label": "До якої температури знижується температура тіла ведмедя під час зимової сплячки?",
+    "options": [
+      {
+        "id": "1",
+        "text": "36–37 градусів"
+      },
+      {
+        "id": "2",
+        "text": "32–34 градуси"
+      },
+      {
+        "id": "3",
+        "text": "29–34 градуси"
+      },
+      {
+        "id": "4",
+        "text": "25–28 градусів"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "label": "Де ведмеді найчастіше облаштовують свої барлоги?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Під кореневищами дерев"
+      },
+      {
+        "id": "2",
+        "text": "У вершинах дерев"
+      },
+      {
+        "id": "3",
+        "text": "У відкритих полях"
+      },
+      {
+        "id": "4",
+        "text": "Під водою"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 4,
+    "type": "single",
+    "label": "Яка товщина жирового прошарку у ведмедя може досягати до кінця сезону?",
+    "options": [
+      {
+        "id": "1",
+        "text": "5 см"
+      },
+      {
+        "id": "2",
+        "text": "10 см"
+      },
+      {
+        "id": "3",
+        "text": "15 см"
+      },
+      {
+        "id": "4",
+        "text": "20 см"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 5,
+    "type": "multiple",
+    "label": "Які з наведених тварин впадають у зимову сплячку?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Їжаки"
+      },
+      {
+        "id": "2",
+        "text": "Бурундуки"
+      },
+      {
+        "id": "3",
+        "text": "Вовки"
+      },
+      {
+        "id": "4",
+        "text": "Олені"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-alignment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 6,
+    "type": "multiple",
+    "label": "Що робить ведмідь перед тим, як залягти у барліг?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Полює на останню здобич"
+      },
+      {
+        "id": "2",
+        "text": "Запасає їжу на зиму"
+      },
+      {
+        "id": "3",
+        "text": "Заплутує сліди"
+      },
+      {
+        "id": "4",
+        "text": "Шукає компаньйона для зимівлі"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-alignment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 7,
+    "type": "multiple",
+    "label": "Які з цих видів ведмедів впадають у зимову сплячку?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Бурий ведмідь"
+      },
+      {
+        "id": "2",
+        "text": "Чорний ведмідь"
+      },
+      {
+        "id": "3",
+        "text": "Білий ведмідь"
+      },
+      {
+        "id": "4",
+        "text": "Панда"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-alignment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 8,
+    "type": "matching",
+    "label": "Співставте види ведмедів з їхніми зимовими звичками:",
+    "pairs": [
+      {
+        "left": "Бурий ведмідь",
+        "right": "Засинає на зиму у барлозі",
+        "leftId": "1",
+        "rightId": "A"
+      },
+      {
+        "left": "Білий ведмідь",
+        "right": "Не впадає в зимову сплячку",
+        "leftId": "2",
+        "rightId": "B"
+      },
+      {
+        "left": "Чорний ведмідь",
+        "right": "Засинає на зиму у барлозі",
+        "leftId": "3",
+        "rightId": "C"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "25",
+      "label-text-alignment": "center",
+      "option-font-size": "15",
+      "option-margin": "10"
+    }
+  }
+]

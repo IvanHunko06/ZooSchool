@@ -7,4 +7,5 @@ public class UserEntity
     public string Password { get; set; } = string.Empty;
     public List<RoleEntity> Roles { get; set; }
 
+    public List<TestAttemptEntity> TestAttempts { get; set; }
 }

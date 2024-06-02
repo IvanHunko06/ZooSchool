@@ -5,7 +5,6 @@
     "styles": {
       "margin": "10",
       "width": "65%",
-      "height": "40%",
       "horizontalAligment": "center"
     }
   },
@@ -38,7 +37,6 @@
     "styles": {
       "margin": "10",
       "width": "75%",
-      "height": "50%",
       "horizontalAligment": "center"
     }
   },
@@ -71,7 +69,6 @@
     "styles": {
       "margin": "10",
       "width": "75%",
-      "height": "50%",
       "horizontalAligment": "center"
     }
   },
@@ -104,7 +101,6 @@
     "styles": {
       "margin": "10",
       "width": "75%",
-      "height": "50%",
       "horizontalAligment": "center"
     }
   },
@@ -121,7 +117,6 @@
     "styles": {
       "margin": "10",
       "width": "75%",
-      "height": "50%",
       "horizontalAligment": "center"
     }
   },
@@ -147,7 +142,6 @@
     "styles": {
       "margin": "10",
       "width": "75%",
-      "height": "50%",
       "horizontalAligment": "center"
     }
   }

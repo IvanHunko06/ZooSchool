@@ -1,0 +1,188 @@
+[
+  {
+    "id": 0,
+    "type": "single",
+    "label": "Яка основна їжа сурикатів",
+    "options": [
+      {
+        "id": "1",
+        "text": "Миша"
+      },
+      {
+        "id": "2",
+        "text": "Ящірка"
+      },
+      {
+        "id": "3",
+        "text": "Птах"
+      },
+      {
+        "id": "4",
+        "text": "Фрукти"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 1,
+    "type": "single",
+    "label": "В якому віці вовки вперше виходять на полювання?",
+    "options": [
+      {
+        "id": "1",
+        "text": "В чотиримісячному"
+      },
+      {
+        "id": "2",
+        "text": "В шестимісячному"
+      },
+      {
+        "id": "3",
+        "text": "В однорічному"
+      },
+      {
+        "id": "4",
+        "text": "В двомісячному"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "label": "Як гепарди зупиняють свою здобич?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Душать її"
+      },
+      {
+        "id": "2",
+        "text": "Заганяють до водойми"
+      },
+      {
+        "id": "3",
+        "text": "Скидають з обриву"
+      },
+      {
+        "id": "4",
+        "text": "Використовують кігті, щоб збити з ніг"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 3,
+    "type": "multiple",
+    "label": "Які з перелічених тварин є здобиччю сурикатів?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Змії"
+      },
+      {
+        "id": "2",
+        "text": "Павуки"
+      },
+      {
+        "id": "3",
+        "text": "Миші"
+      },
+      {
+        "id": "4",
+        "text": "Багатоніжки"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "label": "Які тактики використовують вовки під час полювання?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Загони здобич до обриву"
+      },
+      {
+        "id": "2",
+        "text": "Відволікання вожака"
+      },
+      {
+        "id": "3",
+        "text": "Заганяння здобичі на обледенілий сніг"
+      },
+      {
+        "id": "4",
+        "text": "Використання кігтів, щоб збити з ніг"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "15",
+      "option-margin": "0"
+    }
+  },
+  {
+    "id": 5,
+    "type": "matching",
+    "label": "Співставте тварину з її мисливською тактикою:",
+    "pairs": [
+      {
+        "left": "Сурикати",
+        "right": "Заганяння здобичі до обриву",
+        "leftId": "1",
+        "rightId": "A"
+      },
+      {
+        "left": "Вовки",
+        "right": "Принесення живої здобичі для тренування",
+        "leftId": "2",
+        "rightId": "B"
+      },
+      {
+        "left": "Гепарди",
+        "right": "Використання кігтів для швидкого зариття у землю",
+        "leftId": "3",
+        "rightId": "C"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "10"
+
+    }
+  }
+]

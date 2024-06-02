@@ -7,6 +7,7 @@ using SchoolServer.Infrastructure.Authentification;
 namespace SchoolServer.API.Controllers;
 
 [Authorize]
+[ApiController]
 [Route("api/lessons")]
 public class LessonsController : Controller
 {

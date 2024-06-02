@@ -19,6 +19,9 @@ public class SchoolServerDbContext : DbContext
     public DbSet<PermissionEntity> Permissions { get; set; }
     public DbSet<UserRoleEntity> UsersRoles { get; set; }
     public DbSet<RolePermissionEntity> RolesPermissions { get; set; }
+    public DbSet<TestEntity> Tests { get; set; }
+    public DbSet<TestAnswerEntity> TestsAnswers { get; set; }
+    public DbSet<TestAttemptEntity> TestAttempts { get; set; }
     public DbSet<LessonEntity> Lessons { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +32,9 @@ public class SchoolServerDbContext : DbContext
         modelBuilder.ApplyConfiguration(new RolePermissionConfiguration(authOptions.Value));
         modelBuilder.ApplyConfiguration(new UsersRolesConfiguration());
         modelBuilder.ApplyConfiguration(new LessonConfiguration());
-
+        modelBuilder.ApplyConfiguration(new TestConfiguration());
+        modelBuilder.ApplyConfiguration(new TestAnswerConfiguration());
+        modelBuilder.ApplyConfiguration(new TestAttemptConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 }

@@ -31,7 +31,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Images\58fe7d6f61bcad2fdc2f8541de1e9b3c.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\87475f705435dfd08b1b0bc85697926e.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Images\88b60f2bb1c62483ff6459356f6e7a05.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\8bd2a4707c0790b07ae25c60e60608c3.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\e9a5dc7dd2650384f48880a0f253cb16.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\f428700415264dee994ae6208b9933b7.jpeg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\fa0096562683b13ceb890159b3e9d663.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

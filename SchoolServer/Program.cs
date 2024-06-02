@@ -16,6 +16,7 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddScoped<UsersServices>();
 builder.Services.AddScoped<LessonsService>();
+builder.Services.AddScoped<TestsService>();
 builder.Services.AddSingleton<ResourceServices>();
 
 
@@ -27,6 +28,7 @@ builder.Services.Configure<SchoolServer.DataAccess.SQLServer.AuthorizationOption
 
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<ILessonsRepository, LessonsRepository>();
+builder.Services.AddScoped<ITestsRepository, TestsRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -74,11 +76,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+#if DEBUG
+#else
 app.UseCookiePolicy(new CookiePolicyOptions
 {
     HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always,
     Secure = CookieSecurePolicy.Always
 });
+#endif
+
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -30,11 +30,6 @@ public class AccountController : ControllerBase
     [HttpPost("create_account")]
     public async Task<IActionResult> CreateAccount([FromBody] CreateAccountModel account)
     {
-        if (string.IsNullOrEmpty(account.Login))
-            return BadRequest(new { code = -1 });
-        if (string.IsNullOrEmpty(account.Password))
-            return BadRequest(new { code = -2 });
-
         _logger.LogInformation($"Create account: Username: {account.Login},  Password: {account.Password}");
         try
         {
@@ -199,10 +194,6 @@ public class AccountController : ControllerBase
         catch (UserNotFoundException)
         {
             return NotFound(new { code = 1 });
-        }
-        catch (IncorrectPasswordException)
-        {
-            return BadRequest(new { code = 2 });
         }
         catch (Exception ex)
         {

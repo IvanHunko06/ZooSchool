@@ -1,0 +1,188 @@
+[
+  {
+    "id": 0,
+    "type": "single",
+    "label": "Скільки видів журавлів існує у родині Журавлиних?",
+    "options": [
+      {
+        "id": "1",
+        "text": "10"
+      },
+      {
+        "id": "2",
+        "text": "12"
+      },
+      {
+        "id": "3",
+        "text": "15"
+      },
+      {
+        "id": "4",
+        "text": "18"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 1,
+    "type": "single",
+    "label": "Де в Україні гніздиться сірий журавель?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Карпати"
+      },
+      {
+        "id": "2",
+        "text": "Полісся"
+      },
+      {
+        "id": "3",
+        "text": "Степова частина"
+      },
+      {
+        "id": "4",
+        "text": "Узбережжя Чорного моря"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "label": "Який журавель є найвищим серед усіх видів журавлів?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Сірий журавель"
+      },
+      {
+        "id": "2",
+        "text": "Степовий журавель"
+      },
+      {
+        "id": "3",
+        "text": "Австралійський журавель"
+      },
+      {
+        "id": "4",
+        "text": "Чорношиїй журавель"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 3,
+    "type": "multiple",
+    "label": "Які фактори загрожують журавлям?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Втрата місць існування"
+      },
+      {
+        "id": "2",
+        "text": "Зміна клімату"
+      },
+      {
+        "id": "3",
+        "text": "Хижі тварини"
+      },
+      {
+        "id": "4",
+        "text": "Забруднення води"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "label": "Які особливості мають сірі журавлі?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Унісонне перекликання"
+      },
+      {
+        "id": "2",
+        "text": "Харчуються переважно рослинною їжею"
+      },
+      {
+        "id": "3",
+        "text": "Живуть у лісах"
+      },
+      {
+        "id": "4",
+        "text": "Зимують у Південній Америці"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "15",
+      "option-margin": "0"
+    }
+  },
+  {
+    "id": 5,
+    "type": "matching",
+    "label": "Співставте вид журавля з його характерною особливістю:",
+    "pairs": [
+      {
+        "left": "Степовий журавель",
+        "right": "Пишний чубчик із жорсткого золотистого пір’я",
+        "leftId": "1",
+        "rightId": "A"
+      },
+      {
+        "left": "Чорношиїй журавель",
+        "right": "Найменший серед журавлів",
+        "leftId": "2",
+        "rightId": "B"
+      },
+      {
+        "left": "Сірий вінценосний журавель",
+        "right": "Має яскраву червону ділянку шкіри на маківці",
+        "leftId": "3",
+        "rightId": "C"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "25",
+      "label-text-aligment": "center",
+      "option-font-size": "15",
+      "option-margin": "10"
+
+    }
+  }
+]

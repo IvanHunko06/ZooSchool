@@ -7,6 +7,7 @@ using SchoolServer.Application.Exceptions;
 namespace SchoolServer.API.Controllers;
 
 [Route("resources")]
+[ApiController]
 [Authorize]
 public class ResourcesController : Controller
 {
@@ -88,6 +89,7 @@ public class ResourcesController : Controller
         return Ok(resourceServices.GetAllFiles("Contents"));
     }
 
+    [AllowAnonymous]
     [HttpGet("content/get/{contentName}")]
     public IActionResult GetContent(string contentName)
     {
@@ -114,7 +116,7 @@ public class ResourcesController : Controller
         }
         catch (FileExistException)
         {
-            return Conflict();
+            return Conflict("file already exist in server");
         }
         catch (Exception ex)
         {
@@ -130,6 +132,132 @@ public class ResourcesController : Controller
         try
         {
             resourceServices.DeleteResource("Contents", contentFile);
+            return Ok();
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+
+    }
+
+    [HttpGet("tests_content")]
+    [HasPermission(Core.Enums.Permission.ViewFiles)]
+    public IActionResult GetTestsContentFiles()
+    {
+        return Ok(resourceServices.GetAllFiles("TestsContents"));
+    }
+
+    [AllowAnonymous]
+    [HttpGet("tests_content/get/{contentName}")]
+    public IActionResult GetTestsContent(string contentName)
+    {
+        try
+        {
+            var content = resourceServices.GetResource("TestsContents", contentName);
+            return File(content, $"text/json");
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+
+    }
+
+    [HasPermission(Core.Enums.Permission.CreateResource)]
+    [HttpPost("tests_content/post")]
+    public async Task<IActionResult> PostTestsContent(IFormFile file)
+    {
+        try
+        {
+            await resourceServices.CreateResource("TestsContents", file, new string[] { "json" });
+            return StatusCode(StatusCodes.Status201Created);
+        }
+        catch (FileExistException)
+        {
+            return Conflict("file already exist in server");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+
+    }
+
+    [HttpDelete("tests_content/delete/{contentFile}")]
+    [HasPermission(Core.Enums.Permission.DeleteResource)]
+    public IActionResult DeleteTestsContent(string contentFile)
+    {
+        try
+        {
+            resourceServices.DeleteResource("TestsContents", contentFile);
+            return Ok();
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+
+    }
+
+    [HttpGet("tests_answer")]
+    [HasPermission(Core.Enums.Permission.ViewFiles)]
+    public IActionResult GetTestsAnswersFiles()
+    {
+        return Ok(resourceServices.GetAllFiles("TestsAnswers"));
+    }
+
+    [AllowAnonymous]
+    [HttpGet("tests_answer/get/{contentName}")]
+    public IActionResult GetTestsAnswer(string contentName)
+    {
+        try
+        {
+            var content = resourceServices.GetResource("TestsAnswers", contentName);
+            return File(content, $"text/json");
+        }
+        catch (FileNotFoundException)
+        {
+            return NotFound();
+        }
+
+    }
+
+    [HasPermission(Core.Enums.Permission.CreateResource)]
+    [HttpPost("tests_answer/post")]
+    public async Task<IActionResult> PostTestsAnswer(IFormFile file)
+    {
+        try
+        {
+            await resourceServices.CreateResource("TestsAnswers", file, new string[] { "json" });
+            return StatusCode(StatusCodes.Status201Created);
+        }
+        catch (FileExistException)
+        {
+            return Conflict("file already exist in server");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+
+    }
+
+    [HttpDelete("tests_answer/delete/{contentFile}")]
+    [HasPermission(Core.Enums.Permission.DeleteResource)]
+    public IActionResult DeleteTestsAnswer(string contentFile)
+    {
+        try
+        {
+            resourceServices.DeleteResource("TestsAnswers", contentFile);
             return Ok();
         }
         catch (FileNotFoundException)

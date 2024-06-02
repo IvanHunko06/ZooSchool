@@ -67,7 +67,9 @@ public class UsersRepository : IUsersRepository
         List<User> users = new List<User>();
         foreach (var user in userEntitis)
         {
-            users.Add(User.Create(user.Username, user.Password));
+            var u = User.Create(user.Username, user.Password);
+            u.Id = user.Id;
+            users.Add(u);
         }
         return users;
     }
@@ -92,7 +94,6 @@ public class UsersRepository : IUsersRepository
         }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException sqlEx && sqlEx.Number == 2601)
         {
-            Debug.WriteLine(sqlEx.Number);
             throw new UserAlreadyExistException();
         }
         catch
@@ -113,7 +114,9 @@ public class UsersRepository : IUsersRepository
         var userEntity = await context.Users
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Username == username) ?? throw new UserNotFoundException();
-        return User.Create(userEntity.Username, userEntity.Password);
+        var u = User.Create(userEntity.Username, userEntity.Password);
+        u.Id = userEntity.Id;
+        return u;
     }
 
     public async Task<HashSet<Permission>> GetUserPermissions(string username)

@@ -1,0 +1,194 @@
+[
+  {
+    "id": 0,
+    "type": "single",
+    "label": "Яку максимальну швидкість розвивають хаскі на рівній поверхні?",
+    "options": [
+      {
+        "id": "1",
+        "text": "30 км/год"
+      },
+      {
+        "id": "2",
+        "text": "35 км/год"
+      },
+      {
+        "id": "3",
+        "text": "40 км/год"
+      },
+      {
+        "id": "4",
+        "text": "45 км/год"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 1,
+    "type": "single",
+    "label": "Яка порода вважається найрозумнішою серед усіх собак світу?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Німецька вівчарка"
+      },
+      {
+        "id": "2",
+        "text": "Бордер-коллі"
+      },
+      {
+        "id": "3",
+        "text": "Великий пудель"
+      },
+      {
+        "id": "4",
+        "text": "Джек-рассел-тер'єр"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "label": "Яка максимальна швидкість добермана?",
+    "options": [
+      {
+        "id": "1",
+        "text": "48 км/год"
+      },
+      {
+        "id": "2",
+        "text": "51 км/год"
+      },
+      {
+        "id": "3",
+        "text": "60 км/год"
+      },
+      {
+        "id": "4",
+        "text": "64 км/год"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-aligment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+
+    }
+  },
+  {
+    "id": 3,
+    "type": "multiple",
+    "label": "Які з цих порід собак можуть розганятися до 48 км/год?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Бордер-коллі"
+      },
+      {
+        "id": "2",
+        "text": "Німецька вівчарка"
+      },
+      {
+        "id": "3",
+        "text": "Великий пудель"
+      },
+      {
+        "id": "4",
+        "text": "Джек-рассел-тер'єр"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 4,
+    "type": "multiple",
+    "label": "Які з цих порід бігають зі швидкістю понад 60 км/год?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Джек-рассел-тер'єр"
+      },
+      {
+        "id": "2",
+        "text": "Афганська вівчарка"
+      },
+      {
+        "id": "3",
+        "text": "Салюки"
+      },
+      {
+        "id": "4",
+        "text": "Віппет"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-aligment": "center",
+      "option-font-size": "25",
+      "option-margin": "0"
+    }
+  },
+  {
+    "id": 5,
+    "type": "matching",
+    "label": "Співставте породу собаки з її характерною особливістю:",
+    "pairs": [
+      {
+        "left": "Джек-рассел-тер'єр",
+        "right": "Плямиста шерсть",
+        "leftId": "1",
+        "rightId": "A"
+      },
+      {
+        "left": "Далматин",
+        "right": "Швидкість до 70 км/год",
+        "leftId": "2",
+        "rightId": "B"
+      },
+      {
+        "left": "Віппет",
+        "right": "Здатність переслідувати здобич в норах",
+        "leftId": "3",
+        "rightId": "C"
+      },
+      {
+        "left": "Грейхаунд",
+        "right": "Найшвидший бігун на короткі дистанції",
+        "leftId": "4",
+        "rightId": "D"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "25",
+      "label-text-aligment": "center",
+      "option-font-size": "15",
+      "option-margin": "10"
+
+    }
+  }
+]

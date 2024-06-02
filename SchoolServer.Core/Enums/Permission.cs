@@ -15,5 +15,8 @@ public enum Permission
     CreateLesson,
     DeleteLesson,
     ModifyLesson,
-    ViewFiles
+    ViewFiles,
+    CreateTest,
+    DeleteTest,
+    ModifyTest
 }

@@ -8,4 +8,5 @@ public class UserEntity
     public List<RoleEntity> Roles { get; set; }
 
     public List<TestAttemptEntity> TestAttempts { get; set; }
+    public List<FavoriteEntityl> Favorites { get; set; }
 }

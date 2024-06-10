@@ -18,5 +18,6 @@ public enum Permission
     ViewFiles,
     CreateTest,
     DeleteTest,
-    ModifyTest
+    ModifyTest,
+    DeleteAttempt
 }

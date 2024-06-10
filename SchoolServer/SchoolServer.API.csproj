@@ -31,6 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Images\0243d0b060068f47eba8b2419a0085d9.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\027b3b078bdf5acc09731f1090636e01.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\09f4287e2f1a168ae8e651f601f6e28e.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Images\58fe7d6f61bcad2fdc2f8541de1e9b3c.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

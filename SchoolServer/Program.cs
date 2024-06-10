@@ -17,6 +17,7 @@ var configuration = builder.Configuration;
 builder.Services.AddScoped<UsersServices>();
 builder.Services.AddScoped<LessonsService>();
 builder.Services.AddScoped<TestsService>();
+builder.Services.AddScoped<FavouriteService>();
 builder.Services.AddSingleton<ResourceServices>();
 
 

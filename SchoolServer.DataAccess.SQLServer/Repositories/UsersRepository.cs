@@ -67,7 +67,9 @@ public class UsersRepository : IUsersRepository
         List<User> users = new List<User>();
         foreach (var user in userEntitis)
         {
+            List<int> favourites = await GetFavouriteLessonsId(user.Username);
             var u = User.Create(user.Username, user.Password);
+            u.FavoritesLessons.AddRange(favourites);
             u.Id = user.Id;
             users.Add(u);
         }
@@ -115,6 +117,8 @@ public class UsersRepository : IUsersRepository
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Username == username) ?? throw new UserNotFoundException();
         var u = User.Create(userEntity.Username, userEntity.Password);
+        List<int> favourites = await GetFavouriteLessonsId(username);
+        u.FavoritesLessons.AddRange(favourites);
         u.Id = userEntity.Id;
         return u;
     }
@@ -131,6 +135,46 @@ public class UsersRepository : IUsersRepository
             .SelectMany(r => r.Permissions)
             .Select(p => (Permission)p.Id)
             .ToHashSet();
+    }
+
+    public async Task<List<int>> GetFavouriteLessonsId(string username)
+    {
+        var lessons = await context.Users.AsNoTracking()
+            .Include(u=>u.Favorites)
+            .Where(u=>u.Username == username)
+            .Select(u => u.Favorites)
+            .ToArrayAsync();
+        return lessons.SelectMany(r=>r)
+            .Select(r=>r.LessonId)
+            .ToList();
+    }
+    public async Task AddUserFavouriteLesson(string username, int lessonId)
+    {
+
+        try
+        {
+            var user = await GetByUsername(username);
+            var lesson = await context.Lessons.FirstOrDefaultAsync(u => u.Id == lessonId) ?? throw new LessonNotFoundException();
+            FavoriteEntityl favorite = new FavoriteEntityl()
+            {
+                AddedTime = DateTime.UtcNow,
+                UserId = user.Id,
+                LessonId = lesson.Id
+            };
+            await context.Favorite.AddAsync(favorite);
+            await context.SaveChangesAsync();
+        }
+        catch
+        {
+            throw;
+        }
+
+    }
+    public async Task RemoveUserFavouriteLesson(string username, int lessonId)
+    {
+        await context.Favorite
+            .Where(u=>u.User.Username == username && u.LessonId == lessonId)
+            .ExecuteDeleteAsync();
     }
 
     public async Task Update(User user)

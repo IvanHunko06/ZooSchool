@@ -7,4 +7,6 @@ public class LessonEntity
     public string TitleImageUrl { get; set; }
     public DateTime? LastUpdate { get; set; }
     public string ContentUrl { get; set; }
+
+    public List<FavoriteEntityl> UsersFavoriets { get; set; }
 }

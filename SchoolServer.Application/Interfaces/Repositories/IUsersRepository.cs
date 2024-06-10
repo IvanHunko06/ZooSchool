@@ -12,5 +12,8 @@ namespace SchoolServer.Application.Interfaces.Repositories
         Task<HashSet<Permission>> GetUserPermissions(string username);
         Task DeleteByUsername(string username);
         Task Update(User user);
+        Task<List<int>> GetFavouriteLessonsId(string username);
+        Task AddUserFavouriteLesson(string username, int lessonId);
+        Task RemoveUserFavouriteLesson(string username, int lessonId);
     }
 }

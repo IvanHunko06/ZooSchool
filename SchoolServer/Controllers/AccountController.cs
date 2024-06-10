@@ -90,7 +90,11 @@ public class AccountController : ControllerBase
         try
         {
             user = await usersServices.GetByUsername(username);
-            return Ok(new { username = user.Username});
+            return Ok(new 
+            { 
+                username = user.Username,
+                favoriteLessons = user.FavoritesLessons
+            });
         }
         catch (UserNotFoundException)
         {

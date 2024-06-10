@@ -23,6 +23,7 @@ public class SchoolServerDbContext : DbContext
     public DbSet<TestAnswerEntity> TestsAnswers { get; set; }
     public DbSet<TestAttemptEntity> TestAttempts { get; set; }
     public DbSet<LessonEntity> Lessons { get; set; }
+    public DbSet<FavoriteEntityl> Favorite { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,6 +36,7 @@ public class SchoolServerDbContext : DbContext
         modelBuilder.ApplyConfiguration(new TestConfiguration());
         modelBuilder.ApplyConfiguration(new TestAnswerConfiguration());
         modelBuilder.ApplyConfiguration(new TestAttemptConfiguration());
+        modelBuilder.ApplyConfiguration(new FavouriteConfiguration());
         base.OnModelCreating(modelBuilder);
     }
 }

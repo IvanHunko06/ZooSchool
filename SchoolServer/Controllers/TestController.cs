@@ -53,6 +53,7 @@ public class TestController : Controller
     }
 
     [HttpDelete("delete_attempt/{id:int}")]
+    [HasPermission(Core.Enums.Permission.DeleteAttempt)]
     public async Task<IActionResult> DeleteAttempt(int id)
     {
         await testsService.DeleteAttempt(id);

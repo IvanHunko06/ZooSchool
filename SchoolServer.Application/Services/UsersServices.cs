@@ -131,4 +131,10 @@ public class UsersServices
             throw;
         }
     }
+
+
+    public async Task AddFavouriteLesson(string username, int lessonId)
+    {
+
+    }
 }

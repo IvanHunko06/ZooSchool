@@ -67,6 +67,19 @@ public class NetworkService
         }
 
     }
+
+    public async Task<int> PostRequest(string url)
+    {
+        try
+        {
+            var response = await _httpClient.PostAsync(url, null);
+            return (int)response.StatusCode;
+        }
+        catch (Exception ex)
+        {
+            return default;
+        }
+    }
     public async Task<TResponseBody?> PostRequest<TRequestBody, TResponseBody>(string url, TRequestBody body)
     {
         try
@@ -78,7 +91,6 @@ public class NetworkService
         }
         catch(Exception ex) 
         {
-            Debug.WriteLine(ex.ToString());
             return default;
         }
 

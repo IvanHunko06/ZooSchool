@@ -16,4 +16,7 @@ public class LessonModel
     [JsonPropertyName("contentUrl")]
     public string ContentUrl { get; set; } = string.Empty;
 
+    [JsonIgnore]
+    public bool IsFavourite { get; set; }
+
 }

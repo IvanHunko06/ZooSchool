@@ -34,6 +34,17 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         }
     }
 
+    private ObservableCollection<LessonModel>? _favoritesLessons;
+    public ObservableCollection<LessonModel>? FavoritesLessons
+    {
+        get => _favoritesLessons;
+        set
+        {
+            _favoritesLessons = value;
+            OnPropertyChanged("FavoritesLessons");
+        }
+    }
+
     private string _usernameText = string.Empty;
     public string UsernameText
     {
@@ -78,11 +89,23 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         }
     }
 
+    private bool _menuVisible = false;
+    public bool MenuVisible
+    {
+        get => _menuVisible;
+        set
+        {
+            _menuVisible = value;
+            OnPropertyChanged("MenuVisible");
+        }
+    }
+
     public ICommand SetActiveMenuItemCommand { get; }
     public ICommand LessonItemTappedCommand { get; }
     public ICommand TestItemTappedCommand { get; }
 
     AccountModel? account;
+
     protected override bool OnBackButtonPressed()
     {
         return true;
@@ -94,7 +117,6 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         displayInfo = new DisplayInfoService();
         this.networkService = networkService;
         this.configuration = configuration;
-        GetData();
         if (DeviceInfo.Platform == DevicePlatform.WinUI)
             Application.Current.Windows[0].SizeChanged += HomePage_SizeChanged;
         LessonItemTappedCommand = new Command<LessonModel>(OnLessonItemTapped);
@@ -105,9 +127,12 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
 
 
     }
-    private void SetActiveMenuItem(string menuItem)
+    private async void SetActiveMenuItem(string menuItem)
     {
+        MenuVisible = false;
+        await CollapseMenu();
         ActiveMenuItem = menuItem;
+        
     }
 
     private void HomePage_SizeChanged(object? sender, EventArgs e)
@@ -116,7 +141,7 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
         UpdateSpanCount(width);
     }
 
-    private async void GetData()
+    private async Task GetData()
     {
         account = await networkService.GetRequest<AccountModel>("api/account");
         UsernameText = $"Вітаю, {account?.Username}!";
@@ -139,6 +164,20 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
             }
         }
         Tests = tempTests;
+        if(account is not null && account.FavoriteLessons is not null && Lessons is not null) 
+        {
+            var tempFavourite = new ObservableCollection<LessonModel>();
+            foreach(var lesson in Lessons)
+            {
+                if (account.FavoriteLessons.Contains(lesson.Id))
+                {
+                    tempFavourite.Add(lesson);
+                    lesson.IsFavourite = true;
+                }
+            }
+            FavoritesLessons = tempFavourite;
+        }
+        
         UpdateSpanCount(displayInfo.GetDisplaySize().Width);
     }
     private void UpdateSpanCount(double width)
@@ -160,7 +199,7 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
     {
         if (item == null)
             return;
-        await Navigation.PushAsync(new LessonPage(networkService, item.ContentUrl, configuration));
+        await Navigation.PushAsync(new LessonPage(networkService, item, configuration));
     }
     private async void OnTestItemTapped(TestModel item)
     {
@@ -212,5 +251,44 @@ public partial class HomePage : ContentPage, INotifyPropertyChanged
                 ChangePasswordResultLabel.Text = "Введено неправильний поточний пароль";
                 break;
         }
+    }
+
+    private async void MenuButton_Clicked(object sender, EventArgs e)
+    {
+        if (!MenuVisible)
+        {
+            await ExpandMenu();
+        }
+        else
+        {
+            await CollapseMenu();
+        }
+        MenuVisible = !MenuVisible;
+    }
+    private async Task ExpandMenu()
+    {
+        MenuStackLayout.IsVisible = true;
+        var height = MeasureMenuHeight();
+        await MenuStackLayout.LayoutTo(new Rect(MenuStackLayout.X, MenuStackLayout.Y, MenuStackLayout.Width, height), 250, Easing.Linear);
+    }
+    private async Task CollapseMenu()
+    {
+        var height = MeasureMenuHeight();
+        await MenuStackLayout.LayoutTo(new Rect(MenuStackLayout.X, MenuStackLayout.Y, MenuStackLayout.Width, 0), 250, Easing.Linear);
+        MenuStackLayout.IsVisible = false;
+    }
+    private double MeasureMenuHeight()
+    {
+        double height = 0;
+        foreach (var child in MenuStackLayout.Children)
+        {
+            height += child.Height;
+        }
+        return height;
+    }
+
+    private async void homePage_Appearing(object sender, EventArgs e)
+    {
+        await GetData();
     }
 }

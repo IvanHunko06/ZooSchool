@@ -5,7 +5,8 @@
              x:Name="homePage"
              Title="Home"
              xmlns:converters="clr-namespace:Client.Converters"
-             xmlns:local="clr-namespace:Client">
+             xmlns:local="clr-namespace:Client"
+             Appearing="homePage_Appearing">
     <ContentPage.Resources>
         <converters:CompareTwoStringConverter x:Key="CompareTwoStringConverter"/>
         <Style x:Key="MenuButtonStyle" TargetType="Button">
@@ -24,30 +25,40 @@
     </ContentPage.Resources>
     
     <Grid RowDefinitions="Auto, *" Padding="10" RowSpacing="10">
-        <VerticalStackLayout  Grid.Row="0" Spacing="5">
+        <VerticalStackLayout  Grid.Row="0" Spacing="10">
             <Label Text="{Binding UsernameText}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontSize="Large"/>
-            <Button
+            <Button Text="Меню" Clicked="MenuButton_Clicked"/>
+            <VerticalStackLayout Margin="0, 10" Spacing="9" x:Name="MenuStackLayout" IsVisible="False">
+                <Button
                     x:Name="LessonsButton"
                     Text="Уроки" 
                     FontSize="Small"
                     Style="{StaticResource MenuButtonStyle}"
                     Command="{Binding SetActiveMenuItemCommand}"
                     CommandParameter="Lessons"/>
-            <Button 
+                <Button 
                     x:Name="TestsButton"
                     Text="Тести" 
                     FontSize="Small"
                     Style="{StaticResource MenuButtonStyle}"
                     Command="{Binding SetActiveMenuItemCommand}"
                     CommandParameter="Tests"/>
-            <Button 
+                <Button 
                     x:Name="ProfileButton"
                     Text="Профіль" 
                     FontSize="Small"
                     Style="{StaticResource MenuButtonStyle}"
                     Command="{Binding SetActiveMenuItemCommand}"
                     CommandParameter="Profile"/>
-            <Button Text="Вихід" Clicked="ExitButton_Clicked"  FontSize="Small" BackgroundColor="{AppThemeBinding Light=#A72828, Dark=#7A1C1C}"/>
+                <Button 
+                    x:Name="FavoritesButton"
+                    Text="Вибране" 
+                    FontSize="Small"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Command="{Binding SetActiveMenuItemCommand}"
+                    CommandParameter="Favorites"/>
+                <Button Text="Вихід" Clicked="ExitButton_Clicked"  FontSize="Small" BackgroundColor="{AppThemeBinding Light=#A72828, Dark=#7A1C1C}"/>
+            </VerticalStackLayout>
         </VerticalStackLayout>
         <CollectionView  ItemsSource="{Binding Lessons}"
                     Grid.Row="1"
@@ -131,5 +142,43 @@
             <Label x:Name="ChangePasswordResultLabel" IsVisible="False"/>
             <Button Text="Видалити профіль" Clicked="DeleteProfileButton_Clicked"  BackgroundColor="{AppThemeBinding Light=#A72828, Dark=#7A1C1C}"/>
         </VerticalStackLayout>
+
+        <CollectionView  ItemsSource="{Binding FavoritesLessons}"
+            Grid.Row="1"
+            x:Name="FavoriteLessonsCollectionView"
+            HorizontalOptions="FillAndExpand">
+            <CollectionView.IsVisible>
+                <MultiBinding Converter="{StaticResource CompareTwoStringConverter}">
+                    <Binding Source="{x:Reference FavoritesButton}" Path="CommandParameter"/>
+                    <Binding Source="{x:Reference homePage}" Path="BindingContext.ActiveMenuItem"/>
+                </MultiBinding>
+            </CollectionView.IsVisible>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Transparent" CornerRadius="15" Margin="5" Padding="0"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightGreenButton}, Dark={StaticResource BrightTurquoise}}"
+                   WidthRequest="{Binding Source={x:Reference homePage}, Path=BindingContext.ContentWidth}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference homePage}, Path=BindingContext.LessonItemTappedCommand}"
+                                      CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Spacing="0">
+                            <Image Source="{Binding ImageUrl}"
+                       Aspect="AspectFit"
+                         />
+                            <Label Text="{Binding Title}"
+                       FontSize="Small"
+                       LineBreakMode="WordWrap"
+                       Margin="6, 10, 6, 10"
+                           HorizontalTextAlignment="Center"
+                       HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{Binding LessonsSpanCount}"/>
+            </CollectionView.ItemsLayout>
+        </CollectionView>
     </Grid>
 </ContentPage>

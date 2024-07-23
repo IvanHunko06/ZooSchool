@@ -1,0 +1,244 @@
+[
+  {
+    "id": 0,
+    "type": "single",
+    "label": "Скільки кілограмів насіння та зернят може назбирати синичка до зими?",
+    "options": [
+      {
+        "id": "1",
+        "text": "10 кг"
+      },
+      {
+        "id": "2",
+        "text": "15 кг"
+      },
+      {
+        "id": "3",
+        "text": "20 кг"
+      },
+      {
+        "id": "4",
+        "text": "5 кг"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 1,
+    "type": "single",
+    "label": "Які ягоди полюбляють снігурі?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Малина"
+      },
+      {
+        "id": "2",
+        "text": "Смородина"
+      },
+      {
+        "id": "3",
+        "text": "Горобина"
+      },
+      {
+        "id": "4",
+        "text": "Вишня"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "label": "Що зазвичай їдять горобчики взимку?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Жуки"
+      },
+      {
+        "id": "2",
+        "text": "Насіння"
+      },
+      {
+        "id": "3",
+        "text": "Риба"
+      },
+      {
+        "id": "4",
+        "text": "М’ясо"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "label": "Де найчастіше зимують дятли?",
+    "options": [
+      {
+        "id": "1",
+        "text": "У гніздах на деревах"
+      },
+      {
+        "id": "2",
+        "text": "У дуплах"
+      },
+      {
+        "id": "3",
+        "text": "Під кущами"
+      },
+      {
+        "id": "4",
+        "text": "Під камінням"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 4,
+    "type": "single",
+    "label": "Чим харчуються сойки взимку?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Жолудями"
+      },
+      {
+        "id": "2",
+        "text": "Ягодами"
+      },
+      {
+        "id": "3",
+        "text": "Комахами"
+      },
+      {
+        "id": "4",
+        "text": "Насінням"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "30",
+      "label-text-alignment": "center",
+      "option-font-size": "20",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 5,
+    "type": "multiple",
+    "label": "Які з наведених птахів відлітають на зиму у теплі краї?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Горобці"
+      },
+      {
+        "id": "2",
+        "text": "Ластівки"
+      },
+      {
+        "id": "3",
+        "text": "Дятли"
+      },
+      {
+        "id": "4",
+        "text": "Омелюхи"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-alignment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 6,
+    "type": "multiple",
+    "label": "Чим зазвичай харчуються омелюхи?",
+    "options": [
+      {
+        "id": "1",
+        "text": "Рибою"
+      },
+      {
+        "id": "2",
+        "text": "Омелею"
+      },
+      {
+        "id": "3",
+        "text": "Насінням"
+      },
+      {
+        "id": "4",
+        "text": "Зерном"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "28",
+      "label-text-alignment": "center",
+      "option-font-size": "25",
+      "option-margin": "5"
+    }
+  },
+  {
+    "id": 7,
+    "type": "matching",
+    "label": "Співставте птахів з їхньою зимовою поведінкою:",
+    "pairs": [
+      {
+        "left": "Синичка",
+        "right": "Збирає і ховає насіння",
+        "leftId": "1",
+        "rightId": "A"
+      },
+      {
+        "left": "Снігур",
+        "right": "Сидить нерухомо у люті морози",
+        "leftId": "2",
+        "rightId": "B"
+      },
+      {
+        "left": "Щиглик",
+        "right": "Збирається у великі зграї",
+        "leftId": "3",
+        "rightId": "C"
+      }
+    ],
+    "image": "",
+    "styles": {
+      "label-font-size": "25",
+      "label-text-alignment": "center",
+      "option-font-size": "15",
+      "option-margin": "10"
+    }
+  }
+]

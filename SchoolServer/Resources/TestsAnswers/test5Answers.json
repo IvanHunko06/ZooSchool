@@ -1,0 +1,42 @@
+[
+  {
+    "QuestionId": 0,
+    "AnswerText": "2",
+    "Score": 1
+  },
+  {
+    "QuestionId": 1,
+    "AnswerText": "3",
+    "Score": 1
+  },
+  {
+    "QuestionId": 2,
+    "AnswerText": "2",
+    "Score": 1
+  },
+  {
+    "QuestionId": 3,
+    "AnswerText": "2",
+    "Score": 1
+  },
+  {
+    "QuestionId": 4,
+    "AnswerText": "1",
+    "Score": 1
+  },
+  {
+    "QuestionId": 5,
+    "AnswerText": "2 4",
+    "Score": 2
+  },
+  {
+    "QuestionId": 6,
+    "AnswerText": "2",
+    "Score": 1
+  },
+  {
+    "QuestionId": 7,
+    "AnswerText": "1A 2B 3C",
+    "Score": 3
+  }
+]

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.AutorizationPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,30"
+            Spacing="20">
+            <Image
+                Source="zookids_logo.png"
+                HeightRequest="186"
+                Aspect="AspectFit" />
+
+            <Label
+                Text="Онлайн школа з вивчення зоології"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Entry x:Name="UsernameEntry"  Placeholder="Логін"/>
+            <Label x:Name="UsernameError" Text="Помилка: пусте поле" TextColor="Red" IsVisible="False"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Пароль" IsPassword="True"/>
+            <Label x:Name="PasswordError" Text="Помилка: пусте поле" TextColor="Red" IsVisible="False"/>
+
+            <Button
+                x:Name="LoginBtn"
+                Text="Увійти" 
+                HorizontalOptions="Fill" 
+                Clicked="OnLoginClicked"/>
+            <Button
+                x:Name="RegBtn"
+                Text="Реєстрація" 
+                HorizontalOptions="Fill" 
+                Clicked="OnRegisterClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

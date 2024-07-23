@@ -1,0 +1,16 @@
+.github/
+.vs/
+obj/
+Client/bin/
+Client/obj/
+SchoolServer/bin/
+SchoolServer/obj/
+SchoolServer.Application/bin/
+SchoolServer.Application/obj/
+SchoolServer.Core/bin/
+SchoolServer.Core/obj/
+SchoolServer.DataAccess.SQLServer/bin/
+SchoolServer.DataAccess.SQLServer/obj/
+SchoolServer.DataAccess.SQLServer/Migrations/
+SchoolServer.Infrastructure/bin/
+SchoolServer.Infrastructure/obj/

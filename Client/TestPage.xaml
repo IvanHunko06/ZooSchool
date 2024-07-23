@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.TestPage"
+             Title="TestPage"
+             x:Name="testPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+            <VerticalStackLayout x:Name="TestsStackLayout">
+                <VerticalStackLayout.Triggers>
+                    <DataTrigger TargetType="VerticalStackLayout" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="VerticalStackLayout" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </VerticalStackLayout.Triggers>
+            </VerticalStackLayout>
+            <Button Text="Перевірити" Clicked="CheckButton_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Label Text="{Binding TestName}" FontSize="30" HorizontalOptions="Fill"
+                   HorizontalTextAlignment="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Text="{Binding CorrectPercentText}" FontSize="30">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <ProgressBar ScaleY="6" Progress="{Binding CorrectPercentValue}" ProgressColor="{AppThemeBinding Light=#28A745, Dark=#40E0D0}">
+                <ProgressBar.Triggers>
+                    <DataTrigger TargetType="ProgressBar" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="ProgressBar" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </ProgressBar.Triggers>
+            </ProgressBar>
+            <Label Text="{Binding TestSummaryText}" FontSize="20" HorizontalOptions="Fill" HorizontalTextAlignment="Center">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Button Text="Повторити" Clicked="RetryButton_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Text="Назад" Clicked="BackButton_Clicked">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="True">
+                        <Setter Property="IsVisible" Value="True"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference testPage}, Path=BindingContext.TestResultVisible}" Value="False">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

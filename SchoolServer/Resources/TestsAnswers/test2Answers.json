@@ -1,0 +1,32 @@
+[
+  {
+    "QuestionId": 0,
+    "AnswerText": "3",
+    "Score": 1
+  },
+  {
+    "QuestionId": 1,
+    "AnswerText": "2",
+    "Score": 1
+  },
+  {
+    "QuestionId": 2,
+    "AnswerText": "3",
+    "Score": 1
+  },
+  {
+    "QuestionId": 3,
+    "AnswerText": "1 2 4",
+    "Score": 6
+  },
+  {
+    "QuestionId": 4,
+    "AnswerText": "1 2",
+    "Score": 6
+  },
+  {
+    "QuestionId": 5,
+    "AnswerText": "1C 2A 3B",
+    "Score": 6
+  }
+]

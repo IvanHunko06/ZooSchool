@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.LessonPage"
+             Title="Lesson"
+              Appearing="ContentPage_Appearing">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FavouriteButtonStyle" TargetType="Button">
+                <Style.Triggers>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsFavourite}" Value="False">
+                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#A72727, Dark=#7A1C1C}"/>
+                        <Setter Property="Text" Value="До вибраного"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Button" Binding="{Binding IsFavourite}" Value="True">
+                        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=#302929, Dark=#403838}"/>
+                        <Setter Property="Text" Value="Із вибраного"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout Margin="15" Spacing="15">
+            <VerticalStackLayout x:Name="ContentStack"/>
+            <HorizontalStackLayout>
+                <Button Text="Вибране" Clicked="FavouriteButton_Clicked" Style="{StaticResource FavouriteButtonStyle}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

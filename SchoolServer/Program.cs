@@ -60,9 +60,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+string connectionString = configuration.GetConnectionString("Local");
+#if DEBUG
+#else
+connectionString = configuration.GetConnectionString("Production");
+#endif
 builder.Services.AddDbContext<SchoolServerDbContext>(options =>
 {
-    options.UseSqlServer(configuration.GetConnectionString("SQLServer"));
+    options.UseSqlServer(connectionString);
 });
 
 

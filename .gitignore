@@ -1,6 +1,9 @@
 .github/
 .vs/
+<<<<<<< HEAD
 .github/
+=======
+>>>>>>> 19fa7ed949d902c933110bae8a49472fb9644d42
 obj/
 Client/bin/
 Client/obj/
